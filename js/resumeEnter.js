@@ -196,6 +196,9 @@ $(function () {
     }
   )
 
+  $.fn.fullpage.setMouseWheelScrolling(false);
+  $.fn.fullpage.setAllowScrolling(false);
+
 
 })
 
