@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css"/>
     <link rel="stylesheet" href="css/jquery.fullPage.css"/>
     <link rel="stylesheet" href="css/animate.css">
+    <!--  page4 -->
+    <link rel="stylesheet" href="special_css/style.css">
     <!--  page5 -->
     <link rel='stylesheet' href='css/masterslider.css' type='text/css' media='all' />
     <link rel='stylesheet' href='css/ms-showcase2.css' type='text/css' media='all' />
@@ -43,9 +45,9 @@
                 <li data-menuanchor="page3">
                     <a href="#page3">主营业务</a>
                 </li>
-                <!-- <li data-menuanchor="page4">
-                    <a href="#page4">民宿推荐</a>
-                </li> -->
+                <li data-menuanchor="page4">
+                    <a href="#page4">小馆特色</a>
+                </li>
                 <li data-menuanchor="page5">
                     <a href="#page5">产品展示</a>
                 </li>
@@ -129,9 +131,9 @@
             <div class="row">
                 <div class=" icon-infomation col-xs-12 col-sm-6 col-md-6">
                     <img src="images/page-2/tel.png" alt="">
-                    <h4>注册地址</h4>
+                    <h4>花花小馆地址</h4>
                     <p>
-                        成都市武侯区聚龙路16号2栋10层53号
+                        四川省成都市武侯区金雁路404号皇家别墅兰苑C4
                     </p>
                 </div>
                 <div class=" icon-infomation col-xs-12 col-sm-6 col-md-6">
@@ -208,7 +210,17 @@
             </div>
         </div>
     </div>
-    <!-- <div class="section item-4" id='item-4'></div> -->
+    <div class="section item-4" id='item-4'>
+        <div id="app"></div>
+        <div id="play">
+            <div class="center">
+                <video class="playvideo" width="854" height="480" controls>
+                    您的浏览器不支持Video标签。
+                </video>
+                <div class="close" id="close"><img src="./images/guanbi.png" alt=""></div>
+            </div>
+        </div>
+    </div>
     <div class="section item-5">
         <div class="item5-background">
             <div id="title">旗下 产品</div>
@@ -262,7 +274,7 @@
                     <div class="col-sm-6 col-md-4 col-lg-4">
                         <div class="word">
                             <p><img class="logo" src="./img/logo.png" /></p>
-                            <p><i class="glyphicon glyphicon-globe" style="color: #fff"></i> Sichuan shierke cultural creativity Co., Ltd</p>
+                            <p><i class="glyphicon glyphicon-globe" style="color: #fff"></i>花花小馆：四川省成都市武侯区金雁路404号皇家别墅兰苑C4</p>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-4 col-lg-4"></div>
@@ -282,12 +294,31 @@
     <script src="js/resumeEnter.js"></script>
     <script type="text/javascript" src="js/modernizr-2.6.2.min.js"></script>
     <script type='text/javascript' src='js/masterslider.min.js'></script>
+    <!-- page4 -->
+    <script src='special_js/react.min.js'></script>
+    <script src='special_js/react-dom.min.js'></script>
+    <script src='special_js/index.min.js'></script>
+    <script src="special_js/script.js"></script>
     <script>
     var ms_grabbing_curosr='images/grabbing.cur',ms_grab_curosr='images/grab.cur';
     // window.$ = jQuery.noConflict();
+    const width = $('body').width();
+    if(width < 768){
+        $('.center').width(width);
+        $('.center').height(width * 9 / 16);
+        $('.playvideo').width(width);
+        $('.playvideo').height(width * 9 / 16);
+        $('#close').css({
+            right: '50%',
+            top: '-120px',
+            marginRight: '-15px'
+        })
+    }
     </script>
     <script type="text/javascript">		
         $(document).ready(function(){
+            $('#play').hide();
+            $('.play_btn').attr('data-src', './videos/videos.mp4');
             // var now = document.getElementById('now');
             // now.innerHTML = new Date().getFullYear();
             var slider = new MasterSlider();
@@ -305,6 +336,21 @@
             slider.control('arrows');	
             slider.control('scrollbar' , {dir:'h'});	
             slider.control('thumblist' , {autohide:false ,dir:'v',arrows:false});
+
+            $('.play_btn').click(function(){
+                const src = $(this).data('src');
+                const sourceDom = $(`<source src=${src} />`)
+                $('#play').fadeIn(300);
+                $('.playvideo').removeAttr('src');
+                $('.playvideo').append(sourceDom);
+
+            })
+            $('#close').click(function(){
+                $('.playvideo').find("source").remove();
+                $('.playvideo').attr("src", '');
+                $('#play').fadeOut(300);
+                $('.play_btn').attr('data-src', './videos/videos.mp4');
+            })
         });
     </script>
 

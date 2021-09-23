@@ -61,7 +61,7 @@ $(function () {
       // 左右滑块颜色
       controlArrowColor:'#16BA9D',
       // 导航栏设置
-      anchors: ['page1', 'page2', 'page3', 'page5', 'page6'],
+      anchors: ['page1', 'page2', 'page3', 'page4', 'page5', 'page6'],
       menu: '#menu',
       easing: 'easeInOut',
 
@@ -71,7 +71,7 @@ $(function () {
 
         $('item-4').css('background', 'rgba(255, 255, 255, .1)');
         //侧边导航事件
-        var Tooltips = ['介绍', '公司概况', '主营业务', '产品展示', '联系方式'];
+        var Tooltips = ['介绍', '公司概况', '主营业务', '小馆特色', '产品展示', '联系方式'];
         $("#fp-nav ul li").each(function (index) {
           this.dataset['toggle'] = 'tooltip';
           this.dataset['placement'] = 'left';
@@ -101,8 +101,14 @@ $(function () {
 
       // 滚动触发后结束前回调
       onLeave: function (index, nextIndex, direction) {
+        if(index == 4){
+          $('.playvideo').find("source").remove();
+          $('.playvideo').attr("src", '');
+          $('#play').hide();
+          $('.play_btn').attr('data-src', './videos/videos.mp4');
+        }
 
-        if(nextIndex==4){
+        if(nextIndex == 4){
           $('.sky').hide();
         }
 
@@ -195,11 +201,8 @@ $(function () {
       }
     }
   )
-
   $.fn.fullpage.setMouseWheelScrolling(false);
   $.fn.fullpage.setAllowScrolling(false);
-
-
 })
 
 

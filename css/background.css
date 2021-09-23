@@ -17,9 +17,49 @@
     background-size:cover;
     position: relative;
 }
+
 .item-4 {
     background: rgba(255, 255, 255, .1)!important;
+    position: relative;
 }
+#play{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(0,0,0,.7);
+  z-index: 13;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#play>.center{
+  width: 854px;
+  height: 480px;
+  position: relative;
+}
+#play>.center>.close{
+  background: #fff;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  right: -18px;
+  top: -18px;
+  z-index: 14;
+}
+#play>.center>.close>img{
+  width: 30px;
+  height: auto;
+}
+@media only screen and (max-width: 767px){
+  #play{
+    background: rgba(0,0,0,.9);
+    z-index: 101;
+  }
+}
+
 .guns {
     opacity: 1;
     width: 100%;
